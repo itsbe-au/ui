@@ -51,15 +51,11 @@ export default function SearchPanel({ data, setData }: Props) {
                     label={ `Place of event` }
                 />
                 <TextField
-                    onChange={ (e) => handleDataChange(e.target.value, "from_year") }
-                    value="from_year"
-                    label="From year..."
+                    onChange={ (e) => handleDataChange(e.target.value, "year") }
+                    value="year"
+                    label="Year"
                 />
-                <TextField
-                    onChange={ (e) => handleDataChange(e.target.value, "to_year") }
-                    value="to_year"
-                    label="To year..."
-                />
+                
             </div>
         </>
     );

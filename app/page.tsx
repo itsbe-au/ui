@@ -33,7 +33,7 @@ export default function Page(props: Props) {
         setIsSearching(true);
         let table = formData.table;
         const { table: omitted, ...filters } = formData;
-        let response = await axios.get(`http://192.168.1.222:1880/${table}`, {
+        let response = await axios.get(`https://vic-bdm-search-api.up.railway.app/${table}`, {
             params: filters,
         });
         setResultsData(await response.data);
