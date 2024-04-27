@@ -17,7 +17,7 @@ export default function SelectGroup(props: Props) {
     return (
         <div className="flex flex-row h-full items-stretch">
             <div
-                onClick={ (e) => props.onChange(e.target.value) }
+                onClick={ (e: any) => props.onChange(e.target.value!) }
                 className={`transition-all h-full rounded-l-md px-4 py-4 dark:bg-gray-very-dark self-center cursor-pointer ${
                     selected.births
                         ? "bg-blue dark:bg-blue text-white hover:bg-blue-alternate"

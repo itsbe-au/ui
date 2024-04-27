@@ -1,23 +1,21 @@
 "use client";
 
-import SearchPanel from "@components/searchBar";
 import LoadingSpinner from "@components/loadingSpinner";
-import axios from "axios";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import ResultsPage from "./results/page";
 import NoResultsModal from "@components/noResults";
+import SearchPanel from "@components/searchBar";
 import { motion } from "framer-motion";
-import { PrismaClient } from "@prisma/client";
-import { getBDMData, getBirths } from "./(server)/search";
+import { useState } from "react";
+import { getBDMData } from "./(server)/search";
+import ResultsPage from "./results/page";
+import { ResultsPageWithProps } from "./results/ResultsPageWithProps";
 
-interface HomePageProps {
-    formData: any;
-    setFormData: (x: any) => void;
-    search: () => void;
-};
+// type HomePageProps = {
+//     formData: any;
+//     setFormData: (x: any) => void;
+//     search: () => void;
+// };
 
-export default function HomePage(props: HomePageProps) {
+export default function VicBDMHomePage() {
     const [formData, setFormData] = useState({
         table: "births",
     });
@@ -69,7 +67,7 @@ export default function HomePage(props: HomePageProps) {
     }
 
     if (Object.keys(resultsData).length !== 0)
-        return <ResultsPage table={ formData.table } formData={ resultsData } clearFormData={ () => {
+        return <ResultsPageWithProps table={ formData.table } formData={ resultsData } clearFormData={ () => {
             setResultsData({});
             setFormData(formData);
         } } />;

@@ -17,33 +17,33 @@ export async function getBDMData(table: string, filters: any) {
     }
 }
 
-export async function getBirths(filters: object) {
+export async function getBirths(filters: FilterPayload) {
     console.log("Getting births with filters", filters);
 
     const births = await prisma.births.findMany({
         where: {
             surname: {
                 contains: filters.surname || undefined,
-                mode: "insensitive"
+                mode: "insensitive",
             },
             first_names: {
                 contains: filters.first_names || undefined,
-                mode: "insensitive"
+                mode: "insensitive",
             },
             year: {
-                gte: filters.year - 10 || 1837,
-                lte: filters.year + 10 || 2000
+                gte: filters.year ? filters.year - 10 : undefined,
+                lte: filters.year ? filters.year + 10 : undefined,
             },
             birthplace: {
                 contains: filters.place || undefined,
-                mode: "insensitive"
-            }
-        }
+                mode: "insensitive",
+            },
+        },
     });
     return births;
 }
 
-export async function getDeaths(filters: object) {
+export async function getDeaths(filters: FilterPayload) {
     console.log("Getting deaths with filters", filters);
 
     const deaths = await prisma.deaths.findMany({
@@ -57,8 +57,8 @@ export async function getDeaths(filters: object) {
                 mode: "insensitive"
             },
             year: {
-                gte: filters.year - 10 || 1837,
-                lte: filters.year + 10 || 2000
+                gte: filters.year ? filters.year - 10 : undefined,
+                lte: filters.year ? filters.year + 10 : undefined
             },
             death_place: {
                 contains: filters.place || undefined,
@@ -71,7 +71,16 @@ export async function getDeaths(filters: object) {
 }
 
 
-export async function getMarriages(filters: object) {
+interface FilterPayload {
+    surname?: string;
+    first_names?: string;
+    year?: number;
+    place?: string;
+
+}
+
+
+export async function getMarriages(filters: FilterPayload) {
     console.log("Getting marriages with filters", filters);
 
     const marriages = await prisma.marriages.findMany({
@@ -85,8 +94,8 @@ export async function getMarriages(filters: object) {
                 mode: "insensitive",
             },
             year: {
-                gte: filters.year - 10 || 1837,
-                lte: filters.year + 10 || 2000,
+                gte: filters.year ? filters.year - 10 : undefined,
+                lte: filters.year ? filters.year + 10 : undefined,
             },
             marriage_place: {
                 contains: filters.place || undefined,
