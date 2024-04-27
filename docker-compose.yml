@@ -7,9 +7,10 @@ services:
       dockerfile: Dockerfile
     networks:
       - default
+    ports:
+      - "3000:3000"
     volumes:
       - ./data:/data
     environment:
       - DATABASE_URL="postgresql://postgres:example@localhost:5432/vicbdm?schema=public"
-    depends_on:
-      - mongo
+    restart: unless-stopped

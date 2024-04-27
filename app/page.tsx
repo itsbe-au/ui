@@ -34,6 +34,13 @@ export default function VicBDMHomePage() {
         let table = formData.table;
         const { table: omitted, ...filters } = formData;
 
+        // if no filters, return
+        if (Object.keys(filters).length === 0) {
+            setIsSearching(false);
+            alert("Please provide at least one criteria to search for.")
+            return;
+        }
+
         let results = await getBDMData(table, filters);
 
         setResultsData(results);
@@ -83,12 +90,12 @@ export default function VicBDMHomePage() {
             <NoResultsModal visible={ noResultsModalVisible } />
             <div className="flex flex-col p-32">
                 <SearchPanel data={ formData } setData={ (x) => handleDataChange(x) } />
-                <div
+                <button
                     onClick={ () => getData() }
-                    className={ `transition-all duration-300 rounded-md p-4 mt-8 w-2/12 mx-auto text-center text-white bg-blue cursor-pointer hover:bg-blue-alternate hover:scale-105` }
+                    className={ `transition-all duration-300 rounded-md p-4 mt-8 w-2/12 mx-auto text-center text-white bg-blue cursor-pointer hover:bg-blue-alternate hover:scale-105 disabled:cursor-not-allowed disabled:bg-gray-very-dark disabled:text-gray` }
                 >
                     Search
-                </div>
+                </button>
             </div>
         </motion.div>
     );
