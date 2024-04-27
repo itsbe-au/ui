@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import LoadingSpinner from "@components/loadingSpinner";
 import Header from "@components/header";
 import axios from "axios";
-import Page from "./page";
+import HomePage from "./page";
 import ResultsPage from "./results/page";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -42,8 +42,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                         { children }
                         
                         <div className="rounded-b-md bg-gray-lightest dark:bg-gray dark:bg-opacity-30 dark:text-gray-lighter dark:text-opacity-25 text-gray text-opacity-50 p-4 text-xs flex flex-auto justify-between">
-                            <div>Developed by Beau</div>
-                            <div>last updated 16 June 2023</div>
+                            <div>Developed by Beau Nieuwveld</div>
+                            <div>last updated 27 April 2024</div>
                             <a href="https://github.com/itsbe-au/vic-bdm-search-ui">GitHub repo</a>
                         </div>
                     </div>

@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model births {
+  year         Int?
+  registration String?
+  gender       String?
+  surname      String?
+  first_names  String?
+  father       String?
+  mother       String?
+  birthplace   String?
+  more_info    String?
+  uuid         String @default(dbgenerated("gen_random_uuid()")) @db.Uuid @id
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model deaths {
+  year                Int?
+  registration_number Int?    @map("registration number")
+  gender              String?
+  surname             String?
+  first_names         String? @map("first names")
+  father              String?
+  mother              String?
+  death_place         String? @map("death place")
+  age                 String?
+  other_information   String? @map("other information")
+  uuid                String @default(dbgenerated("gen_random_uuid()")) @db.Uuid @id
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model marriages {
+  year                Int?
+  registration_number String? @map("registration number") @db.VarChar
+  gender              String? @db.Char(1)
+  surname             String?
+  first_names         String? @map("first names")
+  spouse_surname      String? @map("spouse surname")
+  spouse_first_names  String? @map("spouse first names")
+  marriage_place      String? @map("marriage place")
+  other_information   String? @map("other information")
+  uuid                String @default(dbgenerated("gen_random_uuid()")) @db.Uuid @id
+}

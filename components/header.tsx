@@ -9,7 +9,7 @@ export default function Header() {
                 Use this to search for births, deaths and marriages in Victoria.
             </div>
             <div className="text-xs">
-                Because we know how we all feel about the Vic Government's
+                Because we know how we all feel about the Vic Government&rsquo;s
                 official site...
             </div>
         </div>
